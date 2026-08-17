@@ -1,13 +1,13 @@
 # ROS 2 7-DOF Pick and Place Pipeline
 
 <p align="center">
-  <video src="src/videos/autonmous_pick_up.mp4" width="800" controls="controls"></video>
+  <img src="videos/autonmous_pick_up.gif" width="800" alt="Autonomous Pick and Place">
 </p>
 
 This repository contains a simulation and control pipeline for a custom 7-DOF robotic arm using ROS 2 Jazzy and Gazebo Harmonic. It implements a closed-loop pick-and-place task using an eye-in-hand RGB-D camera and MoveIt 2 for motion planning.
 
-## Hardware Setup
-The simulated robot is a 7-DOF manipulator. The redundant 7th axis is used to maintain end-effector poses while avoiding singularities in complex workspaces. 
+##  Setup
+The  robot is a 7-DOF manipulator.
 - **Gripper**: Prismatic parallel-jaw gripper. Gazebo friction parameters (`mu1`, `mu2`) are tuned to handle primitive shapes like spheres without slipping.
 - **Sensors**: RGB-D depth camera mounted on the gripper base for occlusion-free perception during the approach phase.
 
@@ -32,7 +32,7 @@ A state machine that handles the sequence of moving to the object, descending, g
 A PyQt5 interface to interact with the system without using standard CLI tools. It displays a live `cv_bridge` feed and provides buttons to trigger pick-and-place routines as background subprocesses, keeping the main ROS executor responsive.
 
 <p align="center">
-  <img src="src/videos/gui_screenshot.png" width="600" alt="PyQt5 Operator Dashboard">
+  <img src="videos/gui_screenshot.png" width="600" alt="PyQt5 Operator Dashboard">
 </p>
 
 ## Usage
@@ -61,5 +61,5 @@ ros2 launch seven_dof_arm_moveit_config demo.launch.py
 Use the RViz MotionPlanning plugin to drag the interactive marker and execute paths.
 
 <p align="center">
-  <video src="src/videos/moveit_rviz_joint.mp4" width="800" controls="controls"></video>
+  <img src="videos/moveit_rviz_joint.gif" width="800" alt="MoveIt RViz Planning">
 </p>
