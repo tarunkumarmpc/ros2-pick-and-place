@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<!--
+  seven_dof_arm.srdf
+  Semantic Robot Description Format for the 7-DOF arm.
+  Generated compatible with MoveIt2 (Jazzy).
+-->
+<robot name="seven_dof_arm">
+
+  <!-- ═══════════════════════════════════════════════
+       PLANNING GROUPS
+  ════════════════════════════════════════════════ -->
+
+  <!-- 7-DOF arm planning group using KDL chain solver -->
+  <!-- tip_link=tcp puts the IK target at the true finger-tip plane (0.11m above gripper_base) -->
+  <group name="arm">
+    <chain base_link="base_link" tip_link="tcp"/>
+  </group>
+
+  <!-- Gripper planning group -->
+  <group name="gripper">
+    <joint name="gripper_left_joint"/>
+    <joint name="gripper_right_joint"/>
+  </group>
+
+  <!-- ═══════════════════════════════════════════════
+       END EFFECTORS
+  ════════════════════════════════════════════════ -->
+  <end_effector name="gripper_ee"
+                parent_link="flange"
+                group="gripper"
+                parent_group="arm"/>
+
+  <!-- ═══════════════════════════════════════════════
+       NAMED POSITIONS (robot poses)
+  ════════════════════════════════════════════════ -->
+  <group_state name="home" group="arm">
+    <joint name="joint_1" value="0"/>
+    <joint name="joint_2" value="0"/>
+    <joint name="joint_3" value="0"/>
+    <joint name="joint_4" value="-1.5708"/>
+    <joint name="joint_5" value="0"/>
+    <joint name="joint_6" value="1.5708"/>
+    <joint name="joint_7" value="0"/>
+  </group_state>
+
+  <group_state name="ready" group="arm">
+    <joint name="joint_1" value="0"/>
+    <joint name="joint_2" value="-0.5"/>
+    <joint name="joint_3" value="0"/>
+    <joint name="joint_4" value="-2.0"/>
+    <joint name="joint_5" value="0"/>
+    <joint name="joint_6" value="2.0"/>
+    <joint name="joint_7" value="0.785"/>
+  </group_state>
+
+  <group_state name="extended" group="arm">
+    <joint name="joint_1" value="0"/>
+    <joint name="joint_2" value="0"/>
+    <joint name="joint_3" value="0"/>
+    <joint name="joint_4" value="-0.5"/>
+    <joint name="joint_5" value="0"/>
+    <joint name="joint_6" value="0.5"/>
+    <joint name="joint_7" value="0"/>
+  </group_state>
+
+  <group_state name="open" group="gripper">
+    <joint name="gripper_left_joint"  value="0.0"/>
+    <joint name="gripper_right_joint" value="0.0"/>
+  </group_state>
+
+  <group_state name="closed" group="gripper">
+    <joint name="gripper_left_joint"  value="0.05"/>
+    <joint name="gripper_right_joint" value="0.05"/>
+  </group_state>
+
+  <!-- ═══════════════════════════════════════════════
+       SELF COLLISION DISABLE PAIRS
+       (Links that are always touching / never need
+        collision checking between them)
+  ════════════════════════════════════════════════ -->
+  <disable_collisions link1="base_link" link2="link_1" reason="Adjacent"/>
+  <disable_collisions link1="link_1"    link2="link_2" reason="Adjacent"/>
+  <disable_collisions link1="link_2"    link2="link_3" reason="Adjacent"/>
+  <disable_collisions link1="link_3"    link2="link_4" reason="Adjacent"/>
+  <disable_collisions link1="link_4"    link2="link_5" reason="Adjacent"/>
+  <disable_collisions link1="link_5"    link2="link_6" reason="Adjacent"/>
+  <disable_collisions link1="link_6"    link2="link_7" reason="Adjacent"/>
+  <disable_collisions link1="link_7"    link2="flange" reason="Adjacent"/>
+  <disable_collisions link1="flange"    link2="gripper_base"          reason="Adjacent"/>
+  <disable_collisions link1="gripper_base" link2="gripper_left_finger"  reason="Adjacent"/>
+  <disable_collisions link1="gripper_base" link2="gripper_right_finger" reason="Adjacent"/>
+
+  <!-- Never-in-collision pairs (too far apart geometrically) -->
+  <disable_collisions link1="base_link" link2="link_2" reason="Never"/>
+  <disable_collisions link1="base_link" link2="link_3" reason="Never"/>
+  <disable_collisions link1="link_1"    link2="link_3" reason="Never"/>
+  <disable_collisions link1="link_1"    link2="link_4" reason="Never"/>
+  <disable_collisions link1="link_2"    link2="link_4" reason="Never"/>
+  <disable_collisions link1="link_2"    link2="link_5" reason="Never"/>
+  <disable_collisions link1="link_3"    link2="link_5" reason="Never"/>
+  <disable_collisions link1="link_3"    link2="link_6" reason="Never"/>
+  <!-- Added for easier testing to prevent annoying goal-state collision rejections -->
+  <disable_collisions link1="link_4" link2="gripper_right_finger" reason="Never"/>
+  <disable_collisions link1="link_4" link2="gripper_left_finger" reason="Never"/>
+  <disable_collisions link1="link_4" link2="gripper_base" reason="Never"/>
+  <disable_collisions link1="link_4"    link2="link_6" reason="Never"/>
+  <disable_collisions link1="link_4"    link2="link_7" reason="Never"/>
+  <disable_collisions link1="link_5"    link2="link_7" reason="Never"/>
+  <disable_collisions link1="link_5"    link2="flange" reason="Never"/>
+  <disable_collisions link1="gripper_left_finger"  link2="gripper_right_finger" reason="Never"/>
+
+</robot>
