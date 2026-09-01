@@ -4,7 +4,7 @@
   <name>seven_dof_arm_gazebo</name>
   <version>1.0.0</version>
   <description>Gazebo Harmonic simulation launch for the 7-DOF arm</description>
-  <maintainer email="tarun@motionrobotics.dev">Tarun</maintainer>
+  <maintainer email="tarunkumarmpc@gmail.com">Tarun</maintainer>
   <license>Apache-2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
