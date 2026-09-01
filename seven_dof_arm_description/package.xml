@@ -4,7 +4,7 @@
   <name>seven_dof_arm_description</name>
   <version>1.0.0</version>
   <description>URDF/XACRO description of a 7-DOF robotic arm with gripper for ROS 2 Jazzy + Gazebo Harmonic</description>
-  <maintainer email="tarun@motionrobotics.dev">Tarun</maintainer>
+  <maintainer email="tarunkumarmpc@gmail.com">Tarun</maintainer>
   <license>Apache-2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
